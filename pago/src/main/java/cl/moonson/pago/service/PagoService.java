@@ -1,0 +1,41 @@
+package cl.moonson.pago.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import cl.moonson.pago.dto.CarritoDTO;
+import cl.moonson.pago.model.Pago;
+import cl.moonson.pago.repository.PagoRepository;
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class PagoService {
+
+    @Autowired
+    private PagoRepository pagoRepository;
+
+    @Autowired
+    private WebClient webClient;
+    
+    public Pago crearPago(Long carritoId, Pago pago) {
+    CarritoDTO carrito = webClient.get()
+                .uri("/api/v0/carrito/{id}", carritoId)
+                .retrieve()
+                .bodyToMono(CarritoDTO.class)
+                .block();
+        pago.setCarritoId(carritoId);
+        pago.setTotal(carrito.getTotal());
+        pago.setEstado("PENDIENTE");
+    return pagoRepository.save(pago);
+    }
+    public Pago obtenerPago(Long id) {
+        return pagoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+    }
+    public Pago confirmarPago(Long pagoId) {
+        Pago pago = pagoRepository.findById(pagoId).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+        pago.setEstado("APROBADO");
+    return pagoRepository.save(pago);
+    }
+}
