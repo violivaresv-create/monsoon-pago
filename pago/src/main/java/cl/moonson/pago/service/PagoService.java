@@ -30,9 +30,11 @@ public class PagoService {
         pago.setEstado("PENDIENTE");
     return pagoRepository.save(pago);
     }
+    
     public Pago obtenerPago(Long id) {
         return pagoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
     }
+
     public Pago confirmarPago(Long pagoId) {
         Pago pago = pagoRepository.findById(pagoId).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
         pago.setEstado("APROBADO");

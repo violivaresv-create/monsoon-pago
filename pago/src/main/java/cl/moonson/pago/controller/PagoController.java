@@ -29,9 +29,9 @@ public class PagoController {
         return pagoService.obtenerPago(id);
     }
 
-    @PutMapping("/confirmar/{pagoId}")
-    public Pago confirmarPago(@PathVariable Long Id) {
-        return pagoService.confirmarPago(Id);
+    @PutMapping("/confirmar/{id}")
+    public Pago confirmarPago(@PathVariable Long id) {
+        return pagoService.confirmarPago(id);
     }
 
 }
