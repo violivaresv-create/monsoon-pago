@@ -1,4 +1,4 @@
-package cl.moonson.pago.dto;
+package cl.monsoon.pago.dto;
 
 import java.math.BigDecimal;
 

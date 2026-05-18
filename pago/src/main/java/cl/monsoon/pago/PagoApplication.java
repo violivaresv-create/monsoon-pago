@@ -1,4 +1,4 @@
-package cl.moonson.pago;
+package cl.monsoon.pago;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package cl.moonson.pago.controller;
+package cl.monsoon.pago.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.moonson.pago.model.Pago;
-import cl.moonson.pago.service.PagoService;
+import cl.monsoon.pago.model.Pago;
+import cl.monsoon.pago.service.PagoService;
 
 @RestController
 @RequestMapping("api/v0/pagos")

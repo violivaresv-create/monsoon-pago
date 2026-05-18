@@ -1,4 +1,4 @@
-package cl.moonson.pago.configweb;
+package cl.monsoon.pago.configweb;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
