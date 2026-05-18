@@ -1,4 +1,4 @@
-package cl.moonson.pago;
+package cl.monsoon.pago;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
