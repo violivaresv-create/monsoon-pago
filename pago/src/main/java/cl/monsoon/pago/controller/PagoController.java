@@ -30,8 +30,8 @@ public class PagoController {
     @Operation(summary = "Crear un pago", description = "Crea un pago asociado a un carrito de compras y el estado inicial del pago es PENDIENTE")
     @PostMapping("/{carritoId}")
     public ResponseEntity<EntityModel<Pago>> crearPago(@PathVariable Long carritoId, @RequestBody Pago pago) {
-        Boolean resultado = pagoService.crearPago(carritoId, pago);
-        if (resultado) return ResponseEntity.status(HttpStatus.OK).body(addLinks(pago));
+        Pago resultado = pagoService.crearPago(carritoId, pago);
+        if (resultado != null) return ResponseEntity.status(HttpStatus.OK).body(addLinks(resultado));
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         
     }

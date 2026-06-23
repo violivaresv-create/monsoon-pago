@@ -3,6 +3,9 @@ package cl.monsoon.pago.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +32,8 @@ public class Pago {
             example = "1",
             requiredMode = Schema.RequiredMode.REQUIRED)
     private Long carritoId;
-
+        
+    @JdbcTypeCode(SqlTypes.JSON)
     @Schema(description = "Lista de IDs de los juegos en el carrito", 
             example = "[1, 2, 3]",
             requiredMode = Schema.RequiredMode.REQUIRED)

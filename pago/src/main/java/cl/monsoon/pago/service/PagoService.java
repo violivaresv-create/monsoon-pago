@@ -19,7 +19,7 @@ public class PagoService {
     @Autowired
     private WebClient webClient;
     
-    public Boolean crearPago(Long carritoId, Pago pago) {
+    public Pago crearPago(Long carritoId, Pago pago) {
     CarritoDTO carrito = webClient.get()
                 .uri("/api/v0/carrito/{id}", carritoId)
                 .retrieve()
@@ -27,17 +27,19 @@ public class PagoService {
                 .block();
         pago.setCarritoId(carritoId);
         pago.setTotal(carrito.getTotal());
+        pago.setJuegosIds(carrito.getJuegosIds());
         pago.setEstado("PENDIENTE");
-        pagoRepository.save(pago);
-        return true;
+        return pagoRepository.save(pago);
+        
     }
 
     public Pago obtenerPago(Long id){     
-        return pagoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+        return pagoRepository.findById(id).orElse(null);
     }
 
     public Pago confirmarPago(Long pagoId) {
-        Pago pago = pagoRepository.findById(pagoId).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+        Pago pago = pagoRepository.findById(pagoId).orElse(null);
+        if(pago == null) return null;
         CarritoDTO carrito = webClient.get()
                 .uri("/api/v0/carrito/{id}", pago.getCarritoId())
                 .retrieve()

@@ -3,5 +3,6 @@ CREATE TABLE pago (
     carrito_id BIGINT,
     total DECIMAL(10,2) NOT NULL,
     metodo_pago VARCHAR(25) NOT NULL,
+    juegos_ids JSON,
     estado VARCHAR(20)
 );
